@@ -11,10 +11,16 @@ let books = JSON.parse(localStorage.getItem('books'));
 
 const fetchData = () => {
   let result = '';
+  if (localStorage.getItem('books') === null) {
+    allBks.innerHTML = '<h3 class="empty">There are no books available !</h3>';
+    return;
+  }
+
   if (books.length === 0) {
     allBks.innerHTML = '<h3 class="empty">There are no books available !</h3>';
     return;
   }
+
   books.forEach((book) => {
     const { id, title, author } = book;
     const singleBk = `
