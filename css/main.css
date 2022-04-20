@@ -49,6 +49,7 @@ nav {
   transform: translateY(10%);
   font-weight: bold;
   font-size: 0.9rem;
+  transition: ease .4s;
 }
 
 .link:hover {
