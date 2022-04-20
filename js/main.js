@@ -1,10 +1,11 @@
 /* eslint-disable linebreak-style */
 // get dom elements
-const title = document.querySelector('#title');
-const author = document.querySelector('#author');
-const addBtn = document.querySelector('#btn-add');
 const allBks = document.querySelector('#all-books');
-const error = document.querySelector('#error');
+const listLink = document.querySelector('#list');
+const addLink = document.querySelector('#add');
+const contLink = document.querySelector('#contact');
+const bkContainer = document.querySelector('#books');
+const titleCont = document.querySelector('.books-title-1');
 
 // get elements from the local storage if available
 let books = JSON.parse(localStorage.getItem('books'));
@@ -12,41 +13,72 @@ let books = JSON.parse(localStorage.getItem('books'));
 class Books {
   // add new books
   static addBooks = () => {
-    addBtn.addEventListener('click', () => {
-      const bkTitle = title.value;
-      const bkAuthor = author.value;
+    addLink.addEventListener('click', () => {
+      const result = ` 
+          <div class="add-section">
+            <div class="underline"></div>
+            <h2>Add a new book</h2>
+            <input type="text" id="title" class="input" placeholder="title">
+            <input type="text" id='author' class="input" placeholder="author">
+            <p class="error" id="error"></p>
+            <p class="sucess"></p>
+            <button type="button" class="btn-add" id="btn-add">Add Book</button>
+          </div>
+        `;
+      bkContainer.innerHTML = result;
+      const title = document.querySelector('#title');
+      const author = document.querySelector('#author');
+      const addBtn = document.querySelector('#btn-add');
+      const error = document.querySelector('#error');
 
-      // check if the input value is empty
-      if (bkTitle === '' || bkAuthor === '') {
-        error.style.display = 'block';
-        error.textContent = 'all the fields are required';
+      addBtn.addEventListener('click', () => {
+        const bkTitle = title.value;
+        const bkAuthor = author.value;
+
+        // check if the input value is empty
+        if (bkTitle === '' || bkAuthor === '') {
+          error.style.cssText = `
+          display: block;
+          color: red;
+        `;
+          error.textContent = 'all the fields are required';
+          setTimeout(() => {
+            error.style.display = 'none';
+          }, 2000);
+          return;
+        }
+        const newBook = {
+          id: Math.floor(Math.random() * 1000 + 1),
+          title: bkTitle,
+          author: bkAuthor,
+        };
+
+        let bks;
+        if (this.getBooksLs() === null) {
+          bks = [];
+        } else {
+          bks = this.getBooksLs();
+        }
+        bks.push(newBook);
+
+        books = bks;
+        // store books to local storage
+        this.addBooksLs(bks);
+        // update DOM
+        this.addUi();
+        // clear the input fields
+        title.value = '';
+        author.value = '';
+        // add succes message
+        error.style.cssText = `
+          display: block;
+          color:green;
+        `;
+        error.textContent = 'Book added successfully!';
         setTimeout(() => {
           error.style.display = 'none';
         }, 2000);
-        return;
-      }
-      const newBook = {
-        id: Math.floor(Math.random() * 1000 + 1),
-        title: bkTitle,
-        author: bkAuthor,
-      };
-
-      let bks;
-      if (this.getBooksLs() === null) {
-        bks = [];
-      } else {
-        bks = this.getBooksLs();
-      }
-      bks.push(newBook);
-
-      books = bks;
-      // store books to local storage
-      this.addBooksLs(bks);
-      // update DOM
-      this.addUi();
-      // clear the input fields
-      title.value = '';
-      author.value = '';
+      });
     });
   }
 
@@ -75,17 +107,20 @@ class Books {
       this.addUi();
     }
 
-    // add books to ui
+    // add content to ui
     static addUi = () => {
       let result = '';
       if (Books.getBooksLs() === null) {
         allBks.innerHTML = '<h3 class="empty">There are no books available !</h3>';
+        titleCont.style.display = 'none';
         return;
       }
       if (books.length === 0) {
         allBks.innerHTML = '<h3 class="empty">There are no books available !</h3>';
+        titleCont.style.display = 'none';
         return;
       }
+      titleCont.style.display = 'block';
       books.forEach((book) => {
         const { id, title, author } = book;
         const singleBk = `
@@ -98,6 +133,28 @@ class Books {
       });
       allBks.innerHTML = result;
     };
+
+    static contactSection = () => {
+      titleCont.style.display = 'none';
+      contLink.addEventListener('click', () => {
+        const result = `
+          <h1 class="books-title">Contact Information</h1>
+          <p class="contact-text">Do have any questions or you just want to say "Hello"? you can reach out to us</p>
+          <ul class="contact-list ">
+            <li>our email: mail.mail.com</li>
+            <li>our phone number: 00435674839</li>
+            <li>Our addressname: streetname 22, 84503 City, Country</li>
+          </ul>
+        `;
+        bkContainer.innerHTML = result;
+      });
+    }
+
+    static listSection = () => {
+      listLink.addEventListener('click', () => {
+        window.location.reload();
+      });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -107,4 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
   Books.addBooks();
   // delete book method
   Books.deleteBk();
+  // contact section
+  Books.contactSection();
+  // List all books
+  Books.listSection();
+  // title cont
+  titleCont.style.display = 'block';
 });
