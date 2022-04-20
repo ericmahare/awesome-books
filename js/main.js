@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-// get dom elements
+// get some dom elements
 const allBks = document.querySelector('#all-books');
 const listLink = document.querySelector('#list');
 const addLink = document.querySelector('#add');
@@ -21,7 +21,7 @@ class Books {
             <input type="text" id="title" class="input" placeholder="title">
             <input type="text" id='author' class="input" placeholder="author">
             <p class="error" id="error"></p>
-            <p class="sucess"></p>
+            <p class="sucess" id="success"></p>
             <button type="button" class="btn-add" id="btn-add">Add Book</button>
           </div>
         `;
