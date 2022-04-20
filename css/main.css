@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Square+Peg&display=swap');
 
 * {
   margin: 0;
@@ -15,6 +15,46 @@ body {
   font-family: 'roboto', sans-serif;
 }
 
+/* navigation section */
+nav {
+  width: 70%;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  padding: 1rem 2rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 5px #d3d3d3;
+}
+
+.nav-list {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.first-link {
+  font-weight: bold;
+  margin-right: auto;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.link {
+  margin: 0 12px;
+  cursor: pointer;
+  transform: translateY(10%);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.link:hover {
+  color: #007bff;
+}
+
 .container {
   width: 70vw;
   margin: 40px auto;
@@ -27,15 +67,26 @@ body {
   box-shadow: 10px 10px 5px #d3d3d3;
 }
 
+.books-title-1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  display: block;
+  font-family: 'square peg', sans-serif;
+  color: #007bff;
+}
+
 .books-title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   font-weight: bold;
+  text-align: center;
 }
 
 .books {
   width: 80%;
-  margin: 2rem auto;
+  margin: 0 auto 1.2rem auto;
 }
 
 .single-book {
@@ -101,4 +152,40 @@ body {
 
 .btn-add:active {
   transform: scale(0.98);
+}
+
+/* contact section  */
+.contact-text {
+  text-align: center;
+  margin: 2rem;
+  font-size: 1.2rem;
+}
+
+.contact-list {
+  text-align: center;
+  list-style-type: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* footer section */
+
+.footer {
+  width: 70%;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  padding: 1rem 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 5px #d3d3d3;
+}
+
+.footer p {
+  color: #111;
+  font-size: 1rem;
+  margin-right: 0.2rem;
+  font-weight: bold;
 }

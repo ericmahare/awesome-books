@@ -11,21 +11,27 @@
   <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+<nav>
+  <ul class="nav-list">
+    <li class="first-link">Awesome Books</li>
+    <li class="link" id="list">List</li>
+    <li class="link" id="add">Add new</li>
+    <li class="link" id="contact">Contact</li>
+  </ul>
+</nav>
+<main>
   <div class="container">
-    <h1 class="books-title">Awesome Books</h1>
-      <div class="books">
+      <div class="books" id="books">
+        <h1 class="books-title-1">Available Books</h1>
         <div class="all-books" id="all-books">
-        </div>
-        <div class="add-section">
-          <div class="underline"></div>
-          <h2>Add a new book</h2>
-          <input type="text" id="title" class="input" placeholder="title">
-          <input type="text" id='author' class="input" placeholder="author">
-          <p class="error" id="error">error</p>
-          <button type="button" class="btn-add" id="btn-add">Add Book</button>
         </div>
       </div>
     </div>
+  </main>
+  <footer class="footer">
+    <p>&copy;awesomebooks</p>
+    <p>2022</p>
+  </footer>
     <!-- javascript links -->
     <script src="./js/main.js"></script>
 </body>
